@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
+    }
+}
+
+allprojects {
+    group 'fundacion-jala'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'checkstyle'
+    apply plugin: 'pmd'
+    apply plugin: 'findbugs'
+    apply plugin: 'net.saliman.cobertura'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    ext {
+        JUNIT_VERSION = '4.12'
+    }
+
+    dependencies {
+        compile group: 'junit', name: 'junit', version: '4.12'
+        testCompile "junit:junit:${JUNIT_VERSION}"
+    }
+
+    checkstyle {
+        toolVersion = '7.7'
+        configFile = file("${rootProject.rootDir}/config/checkstyle/google_checks.xml")
+    }
+
+    findbugs {
+        toolVersion = "3.0.1"
+    }
+    tasks.withType(FindBugs) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    pmd {
+        toolVersion = '5.6.1'
+    }
+    tasks.withType(Pmd) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    test {
+        testLogging {
+            events "PASSED", "STARTED", "FAILED", "SKIPPED"
+        }
+    }
+}
