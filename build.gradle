@@ -1,10 +1,10 @@
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
     }
     dependencies {
         classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
+        classpath 'eu.appsatori:gradle-fatjar-plugin:0.3'
     }
 }
 
@@ -15,7 +15,6 @@ allprojects {
 
 subprojects {
     repositories {
-        mavenCentral()
         jcenter()
     }
 
@@ -25,6 +24,7 @@ subprojects {
     apply plugin: 'pmd'
     apply plugin: 'findbugs'
     apply plugin: 'net.saliman.cobertura'
+    apply plugin: 'eu.appsatori.fatjar'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
