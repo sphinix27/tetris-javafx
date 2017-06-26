@@ -1,5 +1,6 @@
 package org.fundacionjala.at04.teamtetris.views;
 
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -7,4 +8,6 @@ import javafx.stage.Stage;
  */
 public interface StageView {
     Stage getMainView();
+
+    HBox getRoot();
 }

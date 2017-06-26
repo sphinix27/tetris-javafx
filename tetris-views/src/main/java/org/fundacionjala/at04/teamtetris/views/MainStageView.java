@@ -1,9 +1,8 @@
 package org.fundacionjala.at04.teamtetris.views;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -11,13 +10,15 @@ import javafx.stage.Stage;
  */
 public class MainStageView implements StageView {
     private Stage mainStage;
+    private HBox root;
 
     public MainStageView(Stage stage) {
         this.mainStage = stage;
-        Image background = new Image("File:tetris-views/src/main/resources/background.png");
-        VBox root = new VBox();
-        root.getChildren().add(new ImageView(background));
-        stage.setScene(new Scene(root, 1000, 700));
+        root = new HBox(4);
+        root.setStyle("-fx-background: #328ce7;");
+        root.getChildren().add(new NewGameView(250, 500));
+        root.setAlignment(Pos.CENTER);
+        stage.setScene(new Scene(root, 1000, 500));
         stage.setResizable(false);
         stage.show();
     }
@@ -29,5 +30,10 @@ public class MainStageView implements StageView {
     @Override
     public Stage getMainView() {
         return this.mainStage;
+    }
+
+    @Override
+    public HBox getRoot() {
+        return this.root;
     }
 }

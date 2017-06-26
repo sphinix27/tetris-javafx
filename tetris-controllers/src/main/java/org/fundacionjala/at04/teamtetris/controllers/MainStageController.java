@@ -10,8 +10,8 @@ import org.fundacionjala.at04.teamtetris.views.StageView;
  */
 public class MainStageController {
 
-    public StageView view;
-    public StageModel model;
+    private StageView view;
+    private StageModel model;
 
     public MainStageController(StageView view, StageModel model) {
         this.view = view;
